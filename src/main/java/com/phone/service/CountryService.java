@@ -26,7 +26,14 @@ public class CountryService {
                 .toList();
     }
 
-    
+    public CountryDtoResponse getByCode(String code) {
+        return repository.findById(code).map(mapper::toDto).orElse(null);
+    }
+
+    public CountryDtoResponse save(CountryDtoRequest request) {
+        if (repository.existsById(request.getCode())) {
+            throw new IllegalArgumentException("Страна с кодом '" + request.getCode() + "' уже существует");
+        }
         Country saved = repository.save(mapper.toEntity(request));
         return mapper.toDto(saved);
     }
