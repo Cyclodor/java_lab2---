@@ -20,7 +20,6 @@ public class CountryController {
     public List<CountryDtoResponse> getAll() {
         return service.getAll();
     }
-
     @PutMapping("/{code}")
     public CountryDtoResponse update(@PathVariable String code, @RequestBody CountryDtoRequest request) {
         return service.update(code, request);
