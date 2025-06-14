@@ -24,7 +24,8 @@ public class Country {
     @Column(nullable = false, length = 50)
     private String name;
 
-   
+    @Column(name = "phone_code", nullable = false, length = 10)
+    private String phoneCode;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<PhoneNumberPrefix> prefixes = new ArrayList<>();
